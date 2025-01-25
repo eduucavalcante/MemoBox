@@ -7,6 +7,13 @@ const router = express.Router();
 // Listar pastas
 router.get('/',async  (req, res) => {
     try {
+        const count = await Folder.count();
+
+        // Verifica se existem pastas
+        if(count === 0) {
+            return res.json({ isEmpty: true });
+        }
+
         const folders = await Folder.findAll({ order: [["id", "DESC"]]});
         res.status(200).json(folders);
     } catch(error) {

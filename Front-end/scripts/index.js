@@ -16,12 +16,17 @@ async function fetchFolders() {
         const response = await axios.get(`${API_URL}/`);
         const folders = response.data;
 
+        if(folders.isEmpty) {
+            folderContainer.innerHTML = "<p>Ainda não há pastas.</p>";
+            return;
+        }
+
         folders.forEach(folder => {
             const folderElement = document.createElement("div");
             folderElement.innerHTML = `
                 <p>${folder.name}</p>
                 <hr>
-            `
+            `;
             folderContainer.appendChild(folderElement);
         });
     } catch(error) {
