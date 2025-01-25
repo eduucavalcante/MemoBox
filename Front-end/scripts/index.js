@@ -24,7 +24,7 @@ async function fetchFolders() {
         folders.forEach(folder => {
             const folderElement = document.createElement("div");
             folderElement.innerHTML = `
-                <p>${folder.name}</p>
+                <a href="/folder.html?name=${folder.name}">${folder.name}</a>
                 <hr>
             `;
             folderContainer.appendChild(folderElement);

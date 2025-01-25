@@ -22,6 +22,15 @@ router.get('/:name',async  (req, res) => {
             });
         }
 
+        const noteCount = await Note.count({
+            where: {
+                folderId: folder.id
+            }
+        });
+
+        if(noteCount === 0) {
+            return res.json({ isEmpty: true });
+        }
         res.status(200).json(folder.notes);
     } catch(error) {
         res.status(500).json({"message": `Erro ao carregar notas: ${error}`});
