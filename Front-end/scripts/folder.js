@@ -28,7 +28,7 @@ async function fetchNotes() {
         notes.forEach(note => {
             const noteElement = document.createElement("div");
             noteElement.innerHTML = `
-                <p>${note.title}</p>
+                <a href="/note.html?name=${folderName}&id=${note.id}">${note.title}</a>
                 <hr>
             `;
             notesContainer.appendChild(noteElement);
