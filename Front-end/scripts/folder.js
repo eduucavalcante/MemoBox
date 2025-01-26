@@ -1,12 +1,20 @@
 const API_URL = 'http://localhost:8081';
 
 const notesContainer = document.querySelector('.notesContainer');
+const h1 = document.querySelector('h1');
+const newNoteBtn = document.querySelector('#newNote');
+
+newNoteBtn.addEventListener("click", () => {
+    window.location.href = `/add.html?folder=${h1.innerText}`;
+});
 
 async function fetchNotes() {
     notesContainer.innerHTML = '';
 
     const urlParams = new URLSearchParams(window.location.search);
     const folderName = urlParams.get("name");
+
+    h1.innerText = folderName;
 
     try {
         const response = await axios.get(`${API_URL}/${folderName}`);
