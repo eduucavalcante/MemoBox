@@ -1,0 +1,14 @@
+#newNote {
+    font-size: 1.4rem;
+    font-weight: bold;
+    background-color: #004cff;
+    color: #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: none;
+}
+
+#newNote:hover {
+    background-color: #729cff;
+}
