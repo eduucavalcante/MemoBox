@@ -12,3 +12,8 @@
 #newNote:hover {
     background-color: #729cff;
 }
+
+.deleteDiv {
+    display: flex;
+    justify-content: right;
+}
