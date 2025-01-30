@@ -13,6 +13,31 @@
     background-color: #729cff;
 }
 
+.actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+#deleteFolder {
+    background-color: #98000f;
+    color: #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#deleteFolder:hover {
+    background-color: #bb3f4b;
+}
+
+#deleteFolder img {
+    filter: invert(100%)
+}
+
 .deleteDiv {
     display: flex;
     justify-content: right;
