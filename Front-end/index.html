@@ -7,15 +7,24 @@
     <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-    <h1>MemoBox</h1>
-    <button id="new">Nova pasta</button>
-    <form class="newFolder" method="post">
-        <input id="nameInput" type="text" name="name" placeholder="Nome da pasta" required>
-        <button type="submit">Salvar</button>
-    </form>
-    <div class="folders">
-        <!-- As pastas vão aqui -->
-    </div>
+    <header>
+        <h1>MemoBox</h1>
+        <div><button id="new">Nova pasta</button></div>
+    </header>
+    <main>
+        <dialog>
+            <form class="newFolder" method="dialog">
+                <input id="nameInput" type="text" name="name" placeholder="Nome da pasta" required>
+                <div>
+                    <button id="save" type="submit">Salvar</button>
+                    <button id="cancel" type="button">Fechar</button>
+                </div>
+            </form>
+        </dialog>
+        <section class="foldersContainer">
+            <!-- As pastas vão aqui -->
+        </section>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts/index.js"></script>

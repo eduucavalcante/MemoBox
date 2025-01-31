@@ -1,13 +1,19 @@
 const API_URL = 'http://localhost:8081';
 
-const folderContainer = document.querySelector('.folders');
+const folderContainer = document.querySelector('.foldersContainer');
 const newButton = document.querySelector('#new');
+const cancelButton = document.querySelector('#cancel');
 const form = document.querySelector('form');
+const formDialog = document.querySelector('dialog');
 const folderInput = document.querySelector('#nameInput')
 
 newButton.addEventListener("click", () => {
-    form.classList.toggle('open');
-})
+    formDialog.showModal();
+});
+
+cancelButton.addEventListener("click", () => {
+    formDialog.close();
+});
 
 async function fetchFolders() {
     folderContainer.innerHTML = '';
@@ -24,9 +30,13 @@ async function fetchFolders() {
         folders.forEach(folder => {
             const folderElement = document.createElement("div");
             folderElement.innerHTML = `
-                <a href="/folder.html?name=${folder.name}">${folder.name}</a>
-                <hr>
+                <img width="30" height="30" src="https://img.icons8.com/ios-filled/50/FAB005/opened-folder.png" alt="opened-folder"/>
+                <p>${folder.name}</p>
             `;
+            folderElement.classList.add("folder");
+            folderElement.addEventListener("click", () => {
+                window.location.href = `/folder.html?name=${folder.name}`;
+            })
             folderContainer.appendChild(folderElement);
         });
     } catch(error) {
@@ -51,7 +61,8 @@ async function addFolder(event) {
     }
 
     folderInput.value = '';
-    form.classList.remove('open');
+    //form.classList.remove('open');
+    formDialog.close();
 }
 
 form.addEventListener('submit', addFolder);
