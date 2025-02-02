@@ -5,15 +5,26 @@ const folderName = urlParams.get("folder");
 
 const form = document.querySelector('form');
 const titleInput = document.querySelector('input');
-const contentInput = document.querySelector('textarea');
+const contentInput = document.querySelector('.editor');
+const saveBtn = document.querySelector('#saveBtn');
+const cancelBtn = document.querySelector('#cancel');
+const dialog = document.querySelector('dialog');
 document.documentElement.style.setProperty('--folder', `"na pasta ${folderName}"`);
+
+saveBtn.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+cancelBtn.addEventListener("click", () => {
+    dialog.close();
+});
 
 async function addNote(event) {
     event.preventDefault();
 
     const newNote = {
         title: titleInput.value,
-        content: contentInput.value
+        content: contentInput.innerHTML
     };
 
     try {

@@ -8,12 +8,33 @@
 </head>
 <body>
     <h1>Nova nota</h1>
-    <form>
-        <input type="text" name="title" placeholder="Título" required>
-        <textarea rows="20" cols="50" name="content" placeholder="Digite aqui" required></textarea>
-        <br>
-        <button type="submit" id="save">Salvar</button>
-    </form>
+    <dialog>
+        <form class="newNote" method="dialog">
+            <input type="text" name="title" placeholder="Título" required>
+            <div>
+                <button id="save" type="submit">Salvar</button>
+                <button id="cancel" type="button">Fechar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <div class="toolbar">
+        <button class="format" onclick="document.execCommand('bold')">
+            <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/bold.png" alt="bold"/>
+        </button>
+        <button class="format" onclick="document.execCommand('italic')">
+            <img width="20" height="20" src="https://img.icons8.com/ios-glyphs/30/italic.png" alt="italic"/>
+        </button>
+        <button class="format" onclick="document.execCommand('underline')">
+            <img width="20" height="20" src="https://img.icons8.com/ios-filled/50/underline.png" alt="underline"/>
+        </button>
+        <div class="saveDiv">
+            <button id="saveBtn" class="format">
+                <img width="24" height="24" src="https://img.icons8.com/ios-glyphs/30/save--v1.png" alt="save--v1"/>
+            </button>
+        </div>
+    </div>
+    <div class="editor" id="editor" contenteditable="true"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts/add.js"></script>
