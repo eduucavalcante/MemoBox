@@ -1,3 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+:root {
+    --bg: #D9D9D9;
+}
+
+* {
+    transition: 0.2s linear;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    font-family: 'Inria Sans', sans-serif;
+}
+
 #newNote {
     font-size: 1.4rem;
     font-weight: bold;
@@ -38,7 +53,52 @@
     filter: invert(100%)
 }
 
+.notesContainer {
+    background: var(--bg);
+    padding: 0.5rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.note {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    margin: 0.5rem 0;
+    padding: 0.3rem 0.5rem;
+    border-radius: 5px;
+
+    & p {
+        width: 50rem;
+    }
+}
+
+.note:hover {
+    background: rgba(255, 255, 255, 0.4);
+
+    & p {
+        color: rgba(0, 0, 0, 0.9);
+    }
+}
+
 .deleteDiv {
     display: flex;
     justify-content: right;
+    width: 100%;
+}
+
+.deleteBtn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+}
+
+.deleteBtn:hover {
+    & img {
+        filter: opacity(60%);
+    }
 }

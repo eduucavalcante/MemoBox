@@ -25,12 +25,15 @@ async function fetchNotes() {
         notes.forEach(note => {
             const noteElement = document.createElement("div");
             noteElement.innerHTML = `
-                <a href="/note.html?name=${folderName}&id=${note.id}">${note.title}</a>
+                <p>${note.title}</p>
                 <div class="deleteDiv">
-                    <button class="deleteBtn" onclick="deleteNote(${note.id})"><img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/filled-trash.png" alt="filled-trash"/></button>
+                    <button class="deleteBtn" onclick="deleteNote(${note.id})"><img width="28" height="28" src="https://img.icons8.com/ios-glyphs/30/filled-trash.png" alt="filled-trash"/></button>
                 </div>
-                <hr>
             `;
+            noteElement.classList.add('note');
+            noteElement.addEventListener("click", () => {
+                window.location.href = `/note.html?name=${folderName}&id=${note.id}`;
+            })
             notesContainer.appendChild(noteElement);
         });
     } catch(error) {
