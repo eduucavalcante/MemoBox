@@ -20,6 +20,10 @@ header {
         align-items: center;
         gap: 2rem;
     }
+
+    & div.navbar {
+        position: absolute;
+    }
 }
 
 button.menu__icon {
@@ -40,6 +44,7 @@ button.menu__icon {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 99;
 }
   
 .menu__icon {
@@ -78,6 +83,55 @@ button.menu__icon {
     transform: translateX(10px);
     background-color: rgb(255, 59, 48);
 }
+
+.background.open .menu__icon {
+    transform: rotate(-90deg);
+}
+
+.background.open .menu__icon span {
+    width: .25rem;
+    transform: translateX(10px);
+    background-color: rgb(255, 59, 48);
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 80px;
+    right: -200px;
+    width: 200px;
+    background-color: #fff;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  nav.open {
+    top: 80px;
+    right: 65px;
+  }
+  
+  .value {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    color: black;
+    display: flex;
+    position: relative;
+    gap: 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .value:hover {
+    background-color: #eaeaea !important;
+  }
+  
+  .value svg {
+    width: 15px
+  }
 
 h1 {
     font-family: 'Inria Sans', sans-serif;

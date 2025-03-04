@@ -4,6 +4,8 @@ const notesContainer = document.querySelector('.notesContainer');
 const h1 = document.querySelector('h1');
 const newNoteBtn = document.querySelector('#newNote');
 const delFolderBtn = document.querySelector("#deleteFolder");
+const menuBtn = document.querySelector('#menu');
+const nav = document.querySelector('nav');
 
 const urlParams = new URLSearchParams(window.location.search);
 const folderName = urlParams.get("name");
@@ -80,6 +82,11 @@ newNoteBtn.addEventListener("click", () => {
 
 delFolderBtn.addEventListener("click", () => {
     deleteFolder(folderName);
+});
+
+menuBtn.addEventListener("click", () => {
+    menuBtn.classList.toggle('open');
+    nav.classList.toggle('open');
 });
 
 fetchNotes();

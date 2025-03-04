@@ -6,6 +6,8 @@ const cancelButton = document.querySelector('#cancel');
 const form = document.querySelector('form');
 const formDialog = document.querySelector('dialog');
 const folderInput = document.querySelector('#nameInput')
+const menuBtn = document.querySelector('#menu');
+const nav = document.querySelector('nav');
 
 newButton.addEventListener("click", () => {
     formDialog.showModal();
@@ -66,5 +68,22 @@ async function addFolder(event) {
 }
 
 form.addEventListener('submit', addFolder);
+
+menuBtn.addEventListener("click", () => {
+    menuBtn.classList.toggle('open');
+    nav.classList.toggle('open');
+});
+
+window.addEventListener('resize', function() {
+    if (window.innerWidth <= 768) {
+        newButton.textContent = '+';
+    } else {
+        newButton.textContent = 'Nova pasta';
+    }
+});
+
+if (window.innerWidth <= 768) {
+    newButton.textContent = '+';
+}
 
 fetchFolders();
