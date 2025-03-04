@@ -13,11 +13,12 @@ async function fetchNoteDetails() {
 
         const noteElement = document.createElement('div');
         noteElement.innerHTML = `
-            <h3>${note.title}</h3>
+            <div class="note-header"><h2>${note.title}</h2>
+            <button id="options"><img width="30" height="30" src="https://img.icons8.com/ios-filled/50/menu-2.png" alt="menu-2"/></button></div>
+            <hr>
             <p>${note.content}</p>
             <small>${note.createdAt}</small>
             <br>
-            <button onclick="deleteNote(${note.id})">Excluir nota</button>
         `;
         noteContainer.appendChild(noteElement);
     } catch(error) {
@@ -42,4 +43,26 @@ async function deleteNote(id) {
     }
 }
 
-fetchNoteDetails();
+async function menu() {
+    await fetchNoteDetails();
+    const optionBtn = document.querySelector('#options');
+    const menu = document.querySelector("dialog");
+    const deleteBtn = document.querySelector('#delete');
+
+    optionBtn.addEventListener("click", () => {
+        menu.showModal();
+    });
+
+    menu.addEventListener("click", (e) => {
+        if (e.target === menu) {
+            menu.close();
+        }
+    });
+
+    deleteBtn.addEventListener("click", () => {
+        deleteNote(noteId);
+        menu.close();
+    });
+}
+
+menu();
