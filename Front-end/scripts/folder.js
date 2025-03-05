@@ -69,7 +69,7 @@ async function deleteFolder(name) {
 
     try {
         await axios.delete(`${API_URL}/${name}`);
-        window.location.href = "/index.html";
+        window.location.href = "/home.html";
     } catch(error) {
         alert("Erro ao excluir pasta.");
         console.log(`Erro ao excluir pasta: ${error}`);
