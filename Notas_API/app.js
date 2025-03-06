@@ -1,6 +1,8 @@
 import express from 'express';
 import folderRoutes from './routes/folderRouter.js';
 import noteRoutes from './routes/noteRouter.js';
+import publicRoutes from './routes/publicRouter.js';
+import auth from './middlewares/auth.js';
 import cors from 'cors';
 
 const app = express();
@@ -11,8 +13,9 @@ app.use(express.json());
 app.use(cors());
 
 //Rotas
-app.use('/', folderRoutes);
-app.use('/', noteRoutes);
+app.use('/', publicRoutes);
+app.use('/', auth, folderRoutes);
+app.use('/', auth, noteRoutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor rodando na URL http://localhost:${PORT}/`);
