@@ -6,7 +6,6 @@ import auth from './middlewares/auth.js';
 import cors from 'cors';
 
 const app = express();
-const PORT = 8081;
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -17,6 +16,4 @@ app.use('/', publicRoutes);
 app.use('/', auth, folderRoutes);
 app.use('/', auth, noteRoutes);
 
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na URL http://localhost:${PORT}/`);
-});
+export default app;
