@@ -6,6 +6,14 @@ const noteId = urlParams.get("id");
 
 const noteContainer = document.querySelector('.noteContainer');
 
+// Token JWT
+const authToken = localStorage.getItem('token');
+if(!authToken) {
+    window.location.href = '/index.html';
+}else{
+    axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
+}
+
 async function fetchNoteDetails() {
     try {
         const response = await axios.get(`${API_URL}/${folderName}/${noteId}`);

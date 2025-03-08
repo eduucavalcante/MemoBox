@@ -8,6 +8,15 @@ const formDialog = document.querySelector('dialog');
 const folderInput = document.querySelector('#nameInput')
 const menuBtn = document.querySelector('#menu');
 const nav = document.querySelector('nav');
+const logoutButton = document.querySelector('#logout');
+
+// Token JWT
+const authToken = localStorage.getItem('token');
+if(!authToken) {
+    window.location.href = '/index.html';
+}else{
+    axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
+}
 
 newButton.addEventListener("click", () => {
     formDialog.showModal();
@@ -15,6 +24,11 @@ newButton.addEventListener("click", () => {
 
 cancelButton.addEventListener("click", () => {
     formDialog.close();
+});
+
+logoutButton.addEventListener("click", () => {
+    localStorage.removeItem('token');
+    window.location.href = '/index.html';
 });
 
 async function fetchFolders() {

@@ -12,8 +12,8 @@
         <p class="p">Faça login para acessar a plataforma:</p>
         <p class="p close">Criar uma conta:</p>
         <form class="form" id="loginForm">
-            <input type="text" name="email" id="email" placeholder="Email" required>
-            <input type="password" name="password" id="password" placeholder="Senha" required>
+            <input type="text" name="email" id="email-login" placeholder="Email" required>
+            <input type="password" name="password" id="password-login" placeholder="Senha" required>
             <div class="actions">
                 <button type="submit" class="actionButton" id="login">Entrar</button>
                 <p class="link" id="account">Criar conta</p>
@@ -21,8 +21,8 @@
         </form>
         <form class="form close" id="signUpForm">
             <input type="text" name="username" id="username" placeholder="Nome de usuário" required>
-            <input type="text" name="email" id="email" placeholder="Email" required>
-            <input type="password" name="password" id="password" placeholder="Senha" required>
+            <input type="text" name="email" id="email-sign" placeholder="Email" required>
+            <input type="password" name="password" id="password-sign" placeholder="Senha" required>
             <div class="actions">
                 <button type="submit" class="actionButton" id="signUp">Criar conta</button>
                 <p class="link" id="login">Já tem uma conta? Iniciar sessão</p>
@@ -30,6 +30,11 @@
         </form>
     </main>
 
+    <dialog>
+        <p>Conta criada, fazendo login...</p>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="scripts/index.js"></script>
 </body>
 </html>

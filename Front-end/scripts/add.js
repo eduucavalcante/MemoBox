@@ -11,6 +11,14 @@ const cancelBtn = document.querySelector('#cancel');
 const dialog = document.querySelector('dialog');
 document.documentElement.style.setProperty('--folder', `"na pasta ${folderName}"`);
 
+// Token JWT
+const authToken = localStorage.getItem('token');
+if(!authToken) {
+    window.location.href = '/index.html';
+}else{
+    axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
+}
+
 saveBtn.addEventListener("click", () => {
     dialog.showModal();
 });
