@@ -5,11 +5,11 @@ import Folder from '../models/Folder.js';
 const router = express.Router();
 
 // Listar notas dentro de uma pasta
-router.get('/:name',async  (req, res) => {
+router.get('/:folderId', async  (req, res) => {
     try {
         const folder = await Folder.findOne({
             where: {
-                name: req.params.name
+                id: req.params.folderId
             },
             include: {
                 model: Note, as: 'notes'
@@ -38,7 +38,7 @@ router.get('/:name',async  (req, res) => {
 });
 
 // Abrir uma nota
-router.get('/:name/:id', async (req, res) => {
+router.get('/:folderId/:id', async (req, res) => {
     try {
         const note = await Note.findOne({
             where: {
@@ -53,11 +53,11 @@ router.get('/:name/:id', async (req, res) => {
 });
 
 // Criar uma nota dentro de uma pasta
-router.post('/:name', async (req, res) => {
+router.post('/:folderId', async (req, res) => {
     try {
         const folder = await Folder.findOne({
             where: {
-                name: req.params.name
+                id: req.params.folderId
             }
         });
 
@@ -82,7 +82,7 @@ router.post('/:name', async (req, res) => {
 });
 
 // Excluir uma nota
-router.delete("/:name/:id", async (req, res) => {
+router.delete("/:folderId/:id", async (req, res) => {
     try {
         await Note.destroy({
             where: {

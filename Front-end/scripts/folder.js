@@ -10,6 +10,7 @@ const logoutButton = document.querySelector('#logout');
 
 const urlParams = new URLSearchParams(window.location.search);
 const folderName = urlParams.get("name");
+const folderId = urlParams.get("folderId");
 
 // Token JWT
 const authToken = localStorage.getItem('token');
@@ -25,7 +26,7 @@ async function fetchNotes() {
     h1.innerText = folderName;
 
     try {
-        const response = await axios.get(`${API_URL}/${folderName}`);
+        const response = await axios.get(`${API_URL}/${folderId}`);
         const notes = response.data;
 
         if(notes.isEmpty) {
@@ -61,7 +62,7 @@ async function deleteNote(id) {
     }
 
     try  {
-        await axios.delete(`${API_URL}/${folderName}/${id}`);
+        await axios.delete(`${API_URL}/${folderId}/${id}`);
         fetchNotes();
     } catch (error) {
         alert("Erro ao excluir nota.");
@@ -69,7 +70,7 @@ async function deleteNote(id) {
     }
 }
 
-async function deleteFolder(name) {
+async function deleteFolder(id) {
     const confirmDelete = confirm("Tem certeza que quer excluir a pasta?");
 
     if(!confirmDelete) {
@@ -77,7 +78,7 @@ async function deleteFolder(name) {
     }
 
     try {
-        await axios.delete(`${API_URL}/${name}`);
+        await axios.delete(`${API_URL}/${id}`);
         window.location.href = "/home.html";
     } catch(error) {
         alert("Erro ao excluir pasta.");
@@ -86,11 +87,11 @@ async function deleteFolder(name) {
 }
 
 newNoteBtn.addEventListener("click", () => {
-    window.location.href = `/add.html?folder=${h1.innerText}`;
+    window.location.href = `/add.html?folder=${folderName}&folderId=${folderId}`;
 });
 
 delFolderBtn.addEventListener("click", () => {
-    deleteFolder(folderName);
+    deleteFolder(folderId);
 });
 
 menuBtn.addEventListener("click", () => {

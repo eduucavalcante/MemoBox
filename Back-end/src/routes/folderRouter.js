@@ -5,16 +5,27 @@ import Folder from '../models/Folder.js';
 const router = express.Router();
 
 // Listar pastas
-router.get('/',async  (req, res) => {
+router.get('/', async  (req, res) => {
     try {
-        const count = await Folder.count();
+        const userId = req.user.id;
+        const count = await Folder.count({
+            where: {
+                userId: userId
+            }
+        });
 
         // Verifica se existem pastas
         if(count === 0) {
             return res.json({ isEmpty: true });
         }
 
-        const folders = await Folder.findAll({ order: [["id", "DESC"]]});
+        const folders = await Folder.findAll({ 
+            where: {
+                userId: userId
+            },
+            order: [["id", "DESC"]]
+        });
+
         res.status(200).json(folders);
     } catch(error) {
         res.status(500).json({"message": `Erro ao carregar pastas: ${error}`});
@@ -24,8 +35,11 @@ router.get('/',async  (req, res) => {
 // Criar uma pasta
 router.post('/', async (req, res) => {
     try {
+        const userId = req.user.id;
+    
         await Folder.create({
-            name: req.body.name
+            name: req.body.name,
+            userId: userId
         });
 
         res.status(201).json({
@@ -39,11 +53,14 @@ router.post('/', async (req, res) => {
 });
 
 // Excluir uma pasta
-router.delete("/:name", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
+        const userId = req.user.id;
+
         await Folder.destroy({
             where: {
-                name: req.params.name
+                id: req.params.id,
+                userId: userId
             }
         });
 

@@ -2,6 +2,7 @@ const API_URL = 'http://localhost:8081';
 
 const urlParams = new URLSearchParams(window.location.search);
 const folderName = urlParams.get("folder");
+const folderId = urlParams.get("folderId");
 
 const form = document.querySelector('form');
 const titleInput = document.querySelector('input');
@@ -36,8 +37,8 @@ async function addNote(event) {
     };
 
     try {
-        await axios.post(`${API_URL}/${folderName}`, newNote);
-        window.location.href = `folder.html?name=${folderName}`;
+        await axios.post(`${API_URL}/${folderId}`, newNote);
+        window.location.href = `/folder.html?name=${folderName}&folderId=${folderId}`;
     } catch(error) {
         alert("Erro ao salvar nota.");
         console.log(`Erro ao salvar nota: ${error}`);

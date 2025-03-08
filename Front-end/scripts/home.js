@@ -51,7 +51,7 @@ async function fetchFolders() {
             `;
             folderElement.classList.add("folder");
             folderElement.addEventListener("click", () => {
-                window.location.href = `/folder.html?name=${folder.name}`;
+                window.location.href = `/folder.html?name=${folder.name}&folderId=${folder.id}`;
             })
             folderContainer.appendChild(folderElement);
         });
@@ -77,7 +77,6 @@ async function addFolder(event) {
     }
 
     folderInput.value = '';
-    //form.classList.remove('open');
     formDialog.close();
 }
 
