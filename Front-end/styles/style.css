@@ -50,11 +50,17 @@ main {
     margin: 0.7em auto 0 auto;
 }
 
+.actionButton:hover {
+    opacity: 75%;
+}
+
 input {
     font-size: 1rem;
-    padding: 0.3rem;
+    padding: 0.4rem;
     width: 40rem;
     margin: auto;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
 }
 
 .link {
