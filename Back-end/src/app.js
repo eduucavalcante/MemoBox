@@ -7,9 +7,9 @@ import cors from 'cors';
 
 const app = express();
 
+app.use(cors({ origin: 'https://memobox-notes.netlify.app' }));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cors({ origin: 'https://memobox-notes.netlify.app' }));
 
 //Rotas
 app.use('/', publicRoutes);

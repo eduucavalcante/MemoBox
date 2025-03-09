@@ -4,7 +4,8 @@ const links = document.querySelectorAll('.link');
 const loginForm = document.querySelector('#loginForm');
 const signUpForm = document.querySelector('#signUpForm');
 const p = document.querySelectorAll('.p');
-const dialog = document.querySelector('dialog');
+const loginDialog = document.querySelector('#loginDialog');
+const accountDialog = document.querySelector('#accountDialog');
 
 const emailLogin = document.querySelector('#email-login');
 const emailSign = document.querySelector('#email-sign');
@@ -25,7 +26,7 @@ links.forEach(link => {
 
 async function login(event) {
     event.preventDefault();
-    dialog.showModal();
+    loginDialog.showModal();
 
     try {
         const data = {
@@ -36,27 +37,28 @@ async function login(event) {
         const authToken = response.data.auth;
 
         localStorage.setItem('token', authToken);
-        dialog.close();
+        loginDialog.close();
         window.location.href = '/home.html';
     } catch(error) {
         if(error.response && error.response.status === 400) {
-            dialog.close();
+            loginDialog.close();
             alert("Senha incorreta!");
             passwordLogin.value = '';
         }else if(error.response && error.response.status === 404) {
             alert("Usuário não existe!");
-            dialog.close();
+            loginDialog.close();
             emailLogin.value = '';
+            passwordLogin.value = '';
         }else{
             alert("Erro ao autenticar. Tente novamente");
-            dialog.close();
+            loginDialog.close();
             console.log(`Erro ao autenticar: ${error.message}`);
         }
     }
 }
 
 async function signIn(emailInput, passwordInput) {
-    dialog.showModal();
+    accountDialog.showModal();
 
     try {
         const data = {
@@ -67,10 +69,10 @@ async function signIn(emailInput, passwordInput) {
         const authToken = response.data.auth;
 
         localStorage.setItem('token', authToken);
-        dialog.close();
+        accountDialog.close();
         window.location.href = '/home.html';
     } catch(error) {
-        dialog.close();
+        accountDialog.close();
         alert("Erro ao autenticar. Tente novamente");
         console.log(`Erro ao autenticar: ${error.message}`);
     }
