@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8081';
+const API_URL = process.env.API_URL;
 
 const urlParams = new URLSearchParams(window.location.search);
 const folderName = urlParams.get("folder");

@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8081';
+const API_URL = process.env.API_URL;
 
 const links = document.querySelectorAll('.link');
 const loginForm = document.querySelector('#loginForm');
@@ -17,7 +17,7 @@ links.forEach(link => {
         loginForm.classList.toggle('close');
         signUpForm.classList.toggle('close');
 
-        p.forEach(e => {
+        p.forEach((e) => {
             e.classList.toggle('close');
         })
     });
@@ -25,7 +25,7 @@ links.forEach(link => {
 
 async function login(event) {
     event.preventDefault();
-    dialog.showModal;
+    dialog.showModal();
 
     try {
         const data = {

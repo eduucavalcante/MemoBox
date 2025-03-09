@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8081';
+const API_URL = process.env.API_URL;
 
 const folderContainer = document.querySelector('.foldersContainer');
 const newButton = document.querySelector('#new');

@@ -12,7 +12,7 @@ const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.
     dialectOptions: {
         ssl: {
             rejectUnauthorized: true,
-            ca: fs.readFileSync(process.env.CA_PATH)
+            ca: process.env.CA
         }
     },
     logging: false
