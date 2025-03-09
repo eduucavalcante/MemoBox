@@ -20,5 +20,7 @@ Projeto simples de um sistema de CRUD de notas online.
   - **[bcrypt](https://www.npmjs.com/package/bcrypt)**
   - **[cors](https://www.npmjs.com/package/cors)**
   - **[dotenv](https://www.npmjs.com/package/dotenv)**
+  - **[express](https://www.npmjs.com/package/express)**
+  - **[express-validator](https://www.npmjs.com/package/express-validator)**
   - **[jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)**
   - **[sequelize](https://www.npmjs.com/package/sequelize)**
