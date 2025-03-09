@@ -5,10 +5,10 @@ import path from 'path';
 
 dotenv.config();
 
-const sequelize = new Sequelize(process.env.DATABASE, process.env.USER, process.env.PASSWORD, {
-    host: process.env.HOST,
-    port: process.env.PORT,
-    dialect: process.env.DIALECT,
+const sequelize = new Sequelize(process.env.DATABASE, process.env.DATABASE_USER, process.env.DATABASE_PASSWORD, {
+    host: process.env.DATABASE_HOST,
+    port: process.env.DATABASE_PORT,
+    dialect: process.env.DATABASE_DIALECT,
     dialectOptions: {
         ssl: {
             rejectUnauthorized: true,
