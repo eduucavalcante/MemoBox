@@ -3,6 +3,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import User from '../models/User.js';
+import { body, validationResult } from 'express-validator';
 
 dotenv.config();
 const router = express.Router();
@@ -37,13 +38,31 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/signup', async (req, res) => {
+router.post('/signup', [
+    body('email').isEmail().withMessage('Email inválido'),
+    body('password').isLength({ min: 6 }).withMessage('A senha deve ter pelo menos 6 caracteres')
+], async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(401).json({ errors: errors.array() });
+    }
+
     try {
         const user = req.body;
 
+        const verifyUser = await User.findOne({
+            where: {
+                email: user.email
+            }
+        });
+
+        if(verifyUser) {
+            return res.status(400).json({ message: "Email já registrado" });
+        }
+
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(user.password, salt);
-
         await User.create({
             username: user.username,
             email: user.email,

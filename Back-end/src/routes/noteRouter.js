@@ -7,9 +7,12 @@ const router = express.Router();
 // Listar notas dentro de uma pasta
 router.get('/:folderId', async  (req, res) => {
     try {
+        const userId = req.user.id;
+
         const folder = await Folder.findOne({
             where: {
-                id: req.params.folderId
+                id: req.params.folderId,
+                userId: userId
             },
             include: {
                 model: Note, as: 'notes'
@@ -55,9 +58,12 @@ router.get('/:folderId/:id', async (req, res) => {
 // Criar uma nota dentro de uma pasta
 router.post('/:folderId', async (req, res) => {
     try {
+        const userId = req.user.id;
+
         const folder = await Folder.findOne({
             where: {
-                id: req.params.folderId
+                id: req.params.folderId,
+                userId: userId
             }
         });
 

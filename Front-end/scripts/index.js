@@ -91,6 +91,13 @@ async function createAccount(event) {
         const response = await axios.post(`${API_URL}/signup`, data);
         await signIn(emailSign.value.trim(), passwordSign.value.trim());
     } catch(error) {
+        if(error.response && error.response.status === 400) {
+            return alert("Email já registrado, tente outro email.");
+        }
+        if(error.response && error.response.status === 401) {
+            alert("O email deve ser válido e a senha deve conter pelo menos 6 caracteres.");
+            return console.log(`Email e/ou senha inválida: ${error.message}`);
+        }
         alert("Erro ao criar conta de usuário. Tente novamente");
         console.log(`Erro ao criar usuário: ${error.message}`);
     }
