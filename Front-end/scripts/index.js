@@ -1,4 +1,4 @@
-const API_URL = process.env.API_URL;
+const API_URL = "https://memobox-api.onrender.com";
 
 const links = document.querySelectorAll('.link');
 const loginForm = document.querySelector('#loginForm');
@@ -36,16 +36,20 @@ async function login(event) {
         const authToken = response.data.auth;
 
         localStorage.setItem('token', authToken);
+        dialog.close();
         window.location.href = '/home.html';
     } catch(error) {
         if(error.response && error.response.status === 400) {
+            dialog.close();
             alert("Senha incorreta!");
             passwordLogin.value = '';
         }else if(error.response && error.response.status === 404) {
             alert("Usuário não existe!");
+            dialog.close();
             emailLogin.value = '';
         }else{
             alert("Erro ao autenticar. Tente novamente");
+            dialog.close();
             console.log(`Erro ao autenticar: ${error.message}`);
         }
     }
@@ -63,8 +67,10 @@ async function signIn(emailInput, passwordInput) {
         const authToken = response.data.auth;
 
         localStorage.setItem('token', authToken);
+        dialog.close();
         window.location.href = '/home.html';
     } catch(error) {
+        dialog.close();
         alert("Erro ao autenticar. Tente novamente");
         console.log(`Erro ao autenticar: ${error.message}`);
     }

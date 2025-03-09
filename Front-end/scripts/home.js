@@ -1,4 +1,4 @@
-const API_URL = process.env.API_URL;
+const API_URL = "https://memobox-api.onrender.com";
 
 const folderContainer = document.querySelector('.foldersContainer');
 const newButton = document.querySelector('#new');

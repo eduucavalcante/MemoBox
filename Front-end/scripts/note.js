@@ -1,4 +1,4 @@
-const API_URL = process.env.API_URL;
+const API_URL = "https://memobox-api.onrender.com";
 
 const urlParams = new URLSearchParams(window.location.search);
 const folderName = urlParams.get("name");

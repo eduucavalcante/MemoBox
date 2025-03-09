@@ -1,4 +1,4 @@
-const API_URL = process.env.API_URL;
+const API_URL = "https://memobox-api.onrender.com";
 
 const notesContainer = document.querySelector('.notesContainer');
 const h1 = document.querySelector('h1');
